@@ -8,7 +8,7 @@ import { addItem }  from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState({});;
+    const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
 
     const plantsArray = [
@@ -263,6 +263,10 @@ function ProductList() {
         }));
     };
 
+    const isAddedToCart = (product) => {
+        return addedToCart[product.name];
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -295,7 +299,7 @@ function ProductList() {
                                 <div className='product-title'>{plant.name}</div>
                                 <div className='product-description'>{plant.description}</div>
                                 <div className='product-price'>{plant.cost}</div>
-                                <button className='product-button' onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                <button className={isAddedToCart(plant) ? 'product-button added-to-cart' : 'product-button'} onClick={() => handleAddToCart(plant)} disabled={isAddedToCart(plant)}>Add to Cart</button>
                             </div>
                         ))}
                     </div>
