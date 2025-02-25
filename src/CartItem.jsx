@@ -48,13 +48,22 @@ const CartItem = ({ onContinueShopping }) => {
         return 0;
     };
 
+    const calculateTotalQuantity = () => {
+        var total = 0;
+        cart.forEach((item) => {
+            total += item.quantity;
+        });
+        return total;
+    };
+
     const handleCheckoutShopping = (e) => {
-        alert('Functionality to be added for future reference');
+        alert('Coming Soon');
     };
 
     return (
     <div className="cart-container">
         <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+        <h2 style={{ color: 'black' }}>Total Cart Quantity: {calculateTotalQuantity()}</h2>
         <div>
             {cart.map(item => (
                 <div className="cart-item" key={item.name}>
